@@ -7,13 +7,17 @@ import reducer from './reducers'
 
 /** データの流れ
  * - 初期化 -
- * 1. Providerのstore -> reducerのstate(action無し)
- * 2. connect -> Containerのprops
+ * 1. Providerのstoreからaction無しでstoreを呼び出し
+ * 2. store -> connectにstateを返す
+ * 3. Containerにプロパティを展開
  *
  * - イベント発生 -
- * 1. ContainerのonClickからactions.hogeを呼び出し(dispatch)
- * 2. Providerのstore -> reducerのstate(action付き)
- * 3. connect -> Containerのprops
+ * 1. ContainerのonClick -> ActionCreatorを呼び出し
+ * 2. ActionCreator -> Actionを発行
+ * 3. bindActionCreators -> connectにActionをマッピング
+ * 4. connect -> storeにActionをdispatch
+ * 5. store -> connectにstateを返す
+ * 6. Containerにプロパティを展開
 **/
 
 const store = createStore(reducer);
